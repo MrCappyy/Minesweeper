@@ -1,0 +1,350 @@
+/* styles.css */
+
+/* Root variables for consistency */
+:root {
+  --bg-color: #1e1e2e;
+  --cell-color: #2b2b3c;
+  --hover-color: #3d3d5c;
+  --flag-color: #f39c12;
+  --mine-color: #e74c3c;
+  --text-color: #ecf0f1;
+  --font-family: 'Inter', sans-serif;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background-color: var(--bg-color);
+  color: var(--text-color);
+  font-family: var(--font-family);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  overflow: hidden;
+}
+
+.game-container {
+  width: 100%;
+  max-width: 600px;
+  padding: 20px;
+  text-align: center;
+}
+
+header h1 {
+  font-size: 2rem;
+  margin-bottom: 10px;
+}
+
+.btn-restart {
+  padding: 10px 20px;
+  font-size: 1rem;
+  font-weight: 600;
+  border: none;
+  background: var(--hover-color);
+  color: var(--text-color);
+  border-radius: 5px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.btn-restart:hover {
+  background: var(--flag-color);
+}
+
+.grid {
+  display: grid;
+  gap: 5px;
+  margin-top: 20px;
+  justify-content: center;
+  align-content: center;
+}
+
+.cell {
+  width: 40px;
+  height: 40px;
+  background-color: var(--cell-color);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 1.2rem;
+  font-weight: 600;
+  border-radius: 5px;
+  color: transparent;
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+}
+
+.cell:hover {
+  background-color: var(--hover-color);
+}
+
+.cell.revealed {
+  background-color: var(--bg-color);
+  color: var(--text-color);
+  cursor: default;
+  box-shadow: inset 0 0 5px var(--text-color);
+}
+
+.cell.mine {
+  background-color: var(--mine-color);
+  color: var(--text-color);
+}
+
+.cell.flagged {
+  background-color: var(--flag-color);
+  color: var(--bg-color);
+}
+
+/* Modal Styles */
+.modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.8);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s ease, visibility 0.3s ease;
+}
+
+.modal.visible {
+  opacity: 1;
+  visibility: visible;
+}
+
+.modal-content {
+  background-color: var(--cell-color);
+  color: var(--text-color);
+  text-align: center;
+  padding: 30px;
+  border-radius: 10px;
+  width: 300px;
+  animation: slide-down 0.4s ease-out;
+}
+
+.modal-content h2 {
+  margin-bottom: 10px;
+}
+
+.modal-content p {
+  margin-bottom: 20px;
+  font-size: 1rem;
+}
+
+.modal-content .btn-restart {
+  background: var(--flag-color);
+  color: var(--bg-color);
+  padding: 10px 15px;
+  font-size: 1rem;
+  font-weight: bold;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.modal-content .btn-restart:hover {
+  background: var(--hover-color);
+}
+
+/* Theme Switch Styles */
+.theme-switch {
+  position: relative;
+  display: inline-block;
+  width: 50px;
+  height: 24px;
+  margin-right: 10px;
+  vertical-align: middle;
+}
+
+.theme-switch input {
+  display: none;
+}
+
+.theme-switch .slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: var(--hover-color);
+  border-radius: 34px;
+  transition: background-color 0.3s ease;
+}
+
+.theme-switch .slider:before {
+  position: absolute;
+  content: "";
+  height: 18px;
+  width: 18px;
+  left: 3px;
+  bottom: 3px;
+  background-color: var(--text-color);
+  border-radius: 50%;
+  transition: transform 0.3s ease;
+}
+
+input:checked + .slider {
+  background-color: var(--flag-color);
+}
+
+input:checked + .slider:before {
+  transform: translateX(26px);
+}
+
+/* Light Mode Variables */
+.light-mode {
+  --bg-color: #ecf0f1;
+  --cell-color: #bdc3c7;
+  --hover-color: #95a5a6;
+  --flag-color: #3498db;
+  --mine-color: #e74c3c;
+  --text-color: #2c3e50;
+}
+
+/* Animation */
+@keyframes slide-down {
+  from {
+    transform: translateY(-20px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+/* Smooth transition for grid */
+.grid {
+  display: grid;
+  gap: 5px;
+  margin-top: 20px;
+  justify-content: center;
+  align-content: center;
+  opacity: 1;
+  transform: scale(1);
+  transition: opacity 0.5s ease, transform 0.5s ease;
+}
+
+.grid.hide {
+  opacity: 0;
+  transform: scale(0.9);
+}
+
+/* Smooth fade-in for cells */
+.cell {
+  width: 40px;
+  height: 40px;
+  background-color: var(--cell-color);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 1.2rem;
+  font-weight: 600;
+  border-radius: 5px;
+  color: transparent;
+  cursor: pointer;
+  transition: all 0.2s ease-in-out, background-color 0.3s ease;
+}
+
+.cell.revealed {
+  background-color: var(--bg-color);
+  color: var(--text-color);
+  cursor: default;
+  box-shadow: inset 0 0 5px var(--text-color);
+  transition: background-color 0.3s ease, color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.cell.mine {
+  background-color: var(--mine-color);
+  color: var(--text-color);
+}
+
+.cell.flagged {
+  background-color: var(--flag-color);
+  color: var(--bg-color);
+}
+
+/* Modal transitions */
+.modal.visible {
+  opacity: 1;
+  visibility: visible;
+  transform: scale(1);
+  transition: opacity 0.3s ease, visibility 0.3s ease, transform 0.3s ease;
+}
+
+.modal {
+  transform: scale(0.9);
+}
+/* Smooth transition for grid */
+.grid {
+  display: grid;
+  gap: 5px;
+  margin-top: 20px;
+  justify-content: center;
+  align-content: center;
+  opacity: 1;
+  transform: scale(1);
+  transition: opacity 0.5s ease, transform 0.5s ease;
+}
+
+.grid.hide {
+  opacity: 0;
+  transform: scale(0.9);
+}
+
+/* Smooth fade-in for cells */
+.cell {
+  width: 40px;
+  height: 40px;
+  background-color: var(--cell-color);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 1.2rem;
+  font-weight: 600;
+  border-radius: 5px;
+  color: transparent;
+  cursor: pointer;
+  transition: all 0.2s ease-in-out, background-color 0.3s ease;
+}
+
+.cell.revealed {
+  background-color: var(--bg-color);
+  color: var(--text-color);
+  cursor: default;
+  box-shadow: inset 0 0 5px var(--text-color);
+  transition: background-color 0.3s ease, color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.cell.mine {
+  background-color: var(--mine-color);
+  color: var(--text-color);
+}
+
+.cell.flagged {
+  background-color: var(--flag-color);
+  color: var(--bg-color);
+}
+
+/* Modal transitions */
+.modal.visible {
+  opacity: 1;
+  visibility: visible;
+  transform: scale(1);
+  transition: opacity 0.3s ease, visibility 0.3s ease, transform 0.3s ease;
+}
+
+.modal {
+  transform: scale(0.9);
+}

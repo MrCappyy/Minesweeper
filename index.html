@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Modernized Minesweeper Game">
+  <title>Minesweeper - By Intersk</title>
+  <link rel="stylesheet" href="styles.css">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
+</head>
+<body>
+  <div class="game-container">
+    <header>
+      <h1>🚩 Minesweeper</h1>
+      <label class="theme-switch">
+        <input type="checkbox" id="theme-toggle">
+        <span class="slider"></span>
+      </label>
+      <button id="restart" class="btn-restart">Restart Game</button>
+    </header>
+    <main>
+      <div id="grid" class="grid"></div>
+    </main>
+  </div>
+
+  <!-- Game Over Modal -->
+  <div id="game-over-modal" class="modal hidden">
+    <div class="modal-content">
+      <h2>💥 Game Over!</h2>
+      <p>Oops, you hit a mine! Better luck next time.</p>
+      <button id="close-modal" class="btn-restart">Restart Game</button>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
